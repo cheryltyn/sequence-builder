@@ -1,21 +1,16 @@
 import * as React from 'react';
-import './App.css'
+import './App.css'; 
 import Homepage from './homepage';
-
-import {
-  Box,
-  Button,
-  Container,
-  Heading,
-  Text,
-  Stack, 
-  VStack,
-  Image,
-} from '@chakra-ui/react';
+import Navbar  from './Navbar';
+import SequenceInput  from './SequenceInput';
 
 function App() {
   return (
-    <Homepage/> 
+    <>
+    <Navbar /> 
+    {/* <Homepage/>  */}
+    <SequenceInput />
+    </>
   );
 }
 
