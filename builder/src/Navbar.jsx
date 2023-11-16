@@ -19,11 +19,12 @@ import { Flex, Spacer, Heading} from '@chakra-ui/react';
          Create Sequence 
          </Heading>
          </Link>
+         <Link to="/mysequences"> 
          <Heading as="h5" size="l" textAlign="center" color="black" as="u"> 
          My Sequences 
          </Heading>
+         </Link> 
          </Flex>
-
          <MyRouter /> 
         </>
     );
