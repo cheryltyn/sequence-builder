@@ -8,8 +8,7 @@ function App() {
   return (
     <>
     <Navbar /> 
-    {/* <Homepage/>  */}
-    <SequenceInput />
+    {/* <SequenceInput /> */}
     </>
   );
 }
