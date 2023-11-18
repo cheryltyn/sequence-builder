@@ -1,5 +1,4 @@
 import * as React from 'react';
-import './App.css'
 import { Route, Link } from "react-router-dom";
 import MyRouter from './Router';
 import { Flex, Spacer, Heading} from '@chakra-ui/react';
@@ -22,6 +21,11 @@ import { Flex, Spacer, Heading} from '@chakra-ui/react';
          <Link to="/mysequences"> 
          <Heading as="h5" size="l" textAlign="center" color="black" as="u"> 
          My Sequences 
+         </Heading>
+         </Link> 
+         <Link to="/savesequence"> 
+         <Heading as="h5" size="l" textAlign="center" color="black" ml='30px' as="u"> 
+         Save Sequences 
          </Heading>
          </Link> 
          </Flex>

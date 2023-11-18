@@ -1,8 +1,8 @@
 import * as React from 'react';
-import { HStack, Heading, Container, Button, Text, Spinner } from '@chakra-ui/react';
-import { Select } from '@chakra-ui/react';
+import { HStack, Heading, Container, Button, Text, Spinner, Select } from '@chakra-ui/react';
 import OpenAI from 'openai';
-import { useState } from 'react';
+import { useState, useContext, useEffect} from 'react';
+import SaveSequence from './SaveSequence';
 
 function SequenceInput() {
   const openai = new OpenAI({
@@ -10,8 +10,9 @@ function SequenceInput() {
     dangerouslyAllowBrowser: true
   });
 
-  const [sequence, setSequence] = useState('');
+  const [sequence, setSequence] = useState('This is the sequence');
   const [isLoading, setIsLoading] = useState(false);
+  const [isData, setIsData] = useState(false);
 
   async function getSequence() {
     setIsLoading(true); 
@@ -25,10 +26,14 @@ function SequenceInput() {
       console.error('Error fetching sequence:', error);
     } finally {
       setIsLoading(false); 
+      setIsData(true); 
     }
   }
 
   return (
+    isData ? 
+    <SaveSequence sequence={sequence} setSequence={setSequence}/> 
+    : 
     <Container>
       <Heading as="h1" size="xl" textAlign="center" color="black">
         I want to create a sequence that is...
@@ -56,10 +61,9 @@ function SequenceInput() {
       </Button>
       {isLoading ? (<Spinner />) : (
         <>
-          <Text>{sequence}</Text>
         </>
       )}
-    </Container>
+    </Container> 
   );
 }
 

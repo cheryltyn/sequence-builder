@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Homepage from './homepage';
 import SequenceInput from './SequenceInput';
 import MySequences from './MySequences';
+import SaveSequence from './SaveSequence';
 
 function MyRouter() {
   return (
@@ -10,6 +11,7 @@ function MyRouter() {
         <Route path="/" element={<Homepage />} />
         <Route path="/sequenceinput" element={<SequenceInput />} />
         <Route path="/mysequences" element={<MySequences />} />
+        <Route path="/savesequence" element={<SaveSequence />} />
       </Routes>
   );
 }
