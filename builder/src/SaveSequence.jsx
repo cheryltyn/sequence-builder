@@ -5,7 +5,8 @@ const BASE_URL ="https://api.airtable.com/v0/appoBT9Iv5LWjgpzz/tbloSz8LJMOm3C9aq
 
 function SaveSequence({sequence, sequenceParams}) {
 
-  const [isSaved, setisSaved] = useState(false)
+  const [isSaving, setisSaving] = useState(false)
+  const [isSavedData, setisSavedData] = useState(false)
   
   async function createRecordInAirtable(data, params) {
     const endpoint = BASE_URL
@@ -16,8 +17,8 @@ function SaveSequence({sequence, sequenceParams}) {
         'Content-Type': 'application/json'
       },
       body: JSON.stringify({ records: [ { fields: {
-          duration: sequenceParams.duration,
-          focus_area: sequenceParams.focusArea,
+          duration: params.duration,
+          focus_area: params.focusArea,
           sequence_input: data,
       } } ] })
     };
@@ -28,17 +29,22 @@ function SaveSequence({sequence, sequenceParams}) {
         throw new Error(`HTTP error! status: ${response.status}`);
       }
       const result = await response.json();
+      setisSaving(false)
       console.log('Record created:', result);
       return result;
     } catch (error) {
+      setisSaving(false)
       console.error('Error creating record in Airtable:', error);
     }
   }
 
   const handleOnClick = (event) => {
+    setisSaving(true); 
     createRecordInAirtable(sequence, sequenceParams)
-    setisSaved(true)
+    setisSavedData(true)
   }
+
+  
 
   return(
     <Container>
@@ -46,9 +52,10 @@ function SaveSequence({sequence, sequenceParams}) {
         Here's your sequence. 
       </Heading>
        <Text>{sequence}</Text>
-       <Button colorScheme="teal" variant="solid" onClick={handleOnClick} >
-        Save Sequence 
+       <Button colorScheme="teal" variant="solid" onClick={handleOnClick} isDisabled={isSavedData}>
+       {isSaving ? "Loading..." : isSavedData ? "Sequence Saved" : "Save Sequence"}
       </Button>
+      {isSaving ? (<Spinner />) : undefined}
     </Container>
     
   );
