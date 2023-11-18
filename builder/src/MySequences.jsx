@@ -1,4 +1,4 @@
-import { Table, Tbody, Tr, Td, Text } from '@chakra-ui/react';
+import { Table, Tbody, Tr, Td, Thead, Th, Button } from '@chakra-ui/react';
 import { useState, useEffect } from 'react'; 
 
 function MySequences() {
@@ -24,24 +24,38 @@ function MySequences() {
         throw new Error(`HTTP error! status: ${response.status}`);
       }
       const result = await response.json();
-      setListSequence(result.records.map(item => item.fields)); 
+      setListSequence(result.records.map(item => ({
+        id: item.id,
+        fields: item.fields
+      }))); 
     } catch (error) {
       console.error('Error fetching records from Airtable:', error);
     }
   }
-  console.log(listSequence)
 
   return (
     <Table>
+      <Thead>
+      <Tr>
+        <Th>Duration</Th>
+        <Th>Focus Area</Th>
+        <Th>Sequence</Th>
+      </Tr>
+      </Thead>
       <Tbody>
         {listSequence.length > 0 ? (
           listSequence.map((sequence, index) => (
             <Tr key={index}>
-              <Td>{sequence.Duration}</Td>
+              <Td>{sequence.fields.duration}</Td>
+              <Td>{sequence.fields.focus_area}</Td>
+              <Td>{sequence.fields.sequence_input}</Td>
+              <Td> <Button> X </Button> </Td>
             </Tr>
           ))
         ) : (
-          <Text>Loading...</Text> // You can replace this with a spinner or any loading indicator
+          <Tr>
+          <Td colSpan="3">Loading...</Td>
+        </Tr>
         )}
       </Tbody>
     </Table>
