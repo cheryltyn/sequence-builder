@@ -1,13 +1,14 @@
 import * as React from 'react';
 import {useState} from 'react'; 
-import { HStack, Heading, Container, Button, Text, Spinner } from '@chakra-ui/react';
+import { useToast, Heading, Container, Button, Text, Spinner } from '@chakra-ui/react';
 const BASE_URL ="https://api.airtable.com/v0/appoBT9Iv5LWjgpzz/tbloSz8LJMOm3C9aq";
 
 function SaveSequence({sequence, sequenceParams}) {
 
-  const [isSaving, setisSaving] = useState(false)
-  const [isSavedData, setisSavedData] = useState(false)
-  
+  const [isSaving, setisSaving] = useState(false);
+  const [isSavedData, setisSavedData] = useState(false);
+  const toast = useToast();
+
   async function createRecordInAirtable(data, params) {
     const endpoint = BASE_URL
     const requestOptions = {
@@ -26,28 +27,44 @@ function SaveSequence({sequence, sequenceParams}) {
     try {
       const response = await fetch(endpoint, requestOptions);
       if (!response.ok) {
-        throw new Error(`HTTP error! status: ${response.status}`);
+        toast({
+          title: "Error",
+          description: `Error creating record in Airtable: ${error.message}`,
+          status: "error",
+          duration: 5000,
+          isClosable: true,
+      }); 
+      throw new Error(`HTTP error! status: ${response.status}`);
       }
       const result = await response.json();
       setisSaving(false)
-      console.log('Record created:', result);
+      setisSavedData(true)
+      toast({
+        title: "Success",
+        description: "Record created successfully!",
+        status: "success",
+        duration: 5000,
+        isClosable: true,
+      });
       return result;
     } catch (error) {
       setisSaving(false)
-      console.error('Error creating record in Airtable:', error);
-    }
-  }
+      toast({
+        title: "Error",
+        description: `Error creating record in Airtable: ${error.message}. Please try again later.`,
+        status: "error",
+        duration: 5000,
+        isClosable: true,
+    }); 
+  }}
 
   const handleOnClick = (event) => {
     setisSaving(true); 
     createRecordInAirtable(sequence, sequenceParams)
-    setisSavedData(true)
   }
 
-  
-
   return(
-    <Container>
+    <Container align='center'>
       <Heading as="h1" size="xl" textAlign="center" color="black">
         Here's your sequence. 
       </Heading>
@@ -55,7 +72,7 @@ function SaveSequence({sequence, sequenceParams}) {
        <Button colorScheme="teal" variant="solid" onClick={handleOnClick} isDisabled={isSavedData}>
        {isSaving ? "Loading..." : isSavedData ? "Sequence Saved" : "Save Sequence"}
       </Button>
-      {isSaving ? (<Spinner />) : undefined}
+      {isSaving ? (<Spinner />) : null}
     </Container>
     
   );

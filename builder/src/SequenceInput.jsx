@@ -1,7 +1,7 @@
 import * as React from 'react';
-import { HStack, Heading, Container, Button, Text, Spinner, Select } from '@chakra-ui/react';
+import { useToast } from '@chakra-ui/react';
 import OpenAI from 'openai';
-import { useState, useContext, useEffect} from 'react';
+import { useState} from 'react';
 import SaveSequence from './SaveSequence';
 import SequenceParameters from './SequenceParameters';
 
@@ -18,6 +18,7 @@ function SequenceInput() {
   const [sequence, setSequence] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const [isData, setIsData] = useState(false);
+  const toast = useToast();
 
   async function getSequence(sequenceParams) {
     setIsLoading(true); 
@@ -28,11 +29,17 @@ function SequenceInput() {
         model: "gpt-3.5-turbo",
       });
       setSequence(completion.choices[0].message.content);
+      setIsData(true); 
     } catch (error) {
-      console.error('Error fetching sequence:', error);
+      toast({
+        title: "Error",
+        description: `Error fetching sequence: ${error.message}. Please try again later.`,
+        status: "error",
+        duration: 5000,
+        isClosable: true,
+    }); 
     } finally {
       setIsLoading(false); 
-      setIsData(true); 
     }
   }
 

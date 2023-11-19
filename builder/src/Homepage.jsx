@@ -1,24 +1,28 @@
 import * as React from 'react';
-import './App.css'
+import { useNavigate } from 'react-router-dom';
 
 import {
-  Box,
   Button,
-  Container,
-  Heading,
   Text,
-  Stack, 
   VStack,
   Image,
 } from '@chakra-ui/react';
 
 function Homepage() {
+
+  const goToClick = () => {
+    navigate('/sequenceinput');
+  };
+  
+
+  const navigate = useNavigate();
+
   return (
-      <VStack spacing={8} marginTop="20">
+      <VStack spacing={8} marginTop="20" >
         <Text fontSize="2xl" textAlign="center">
           helping yoga instructors build better classes
         </Text>
-        <Button colorScheme="teal" variant="solid">
+        <Button colorScheme="teal" variant="solid" onClick={goToClick}>
           Create Sequence
         </Button>
       </VStack>
