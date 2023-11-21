@@ -24,6 +24,7 @@ function SequenceInput() {
     setIsLoading(true); 
     console.log(sequenceParams)
     try {
+      /* START FOR ACTUAL PROD */ 
       const completion = await openai.chat.completions.create({
         messages: [{ role: "system", content:`give me a ${sequenceParams.duration} minutes yoga sequence focusing on the ${sequenceParams.focusArea} in 100 words`}],
         model: "gpt-3.5-turbo",
@@ -37,8 +38,13 @@ function SequenceInput() {
         status: "error",
         duration: 5000,
         isClosable: true,
+      /* END FOR ACTUAL PROD */ 
     }); 
-    } finally {
+      /* NO API PORTFOLIO 
+      setIsData(true); 
+      setSequence("Start in a seated position with your legs extended forward. Take a deep breath in and lift your arms overhead. Exhale and engage your core as you fold forward into a seated forward bend, reaching for your toes. Inhale as you come back up to a seated position. Transition into boat pose by leaning back slightly and lifting your legs off the floor, balancing on your sit bones. Hold for a few breaths, then slowly lower back down. Finish with a final seated forward bend, focusing on lengthening your spine and stretching your hamstrings. Take a deep breath in, exhale and release.")
+      */ 
+  } finally {
       setIsLoading(false); 
     }
   }

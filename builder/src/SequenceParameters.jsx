@@ -1,11 +1,20 @@
 import * as React from 'react';
-import { HStack, Heading, Container, Button, VStack, Spinner, Select , Text} from '@chakra-ui/react';
+import { useTheme, HStack, Heading, Container, Button, VStack, Spinner, Select , Text} from '@chakra-ui/react';
 
 function SequenceParameters({getSequence, isLoading, handleChange, sequenceParams}) {
+  const theme = useTheme();
   return (
     <Container align='center'>
-      <Heading as="h1" size="xl" textAlign="center" color="black" noOfLines={1} mb={4}>
-        I want to create a sequence that: 
+      <Heading
+        as="h1"
+        size="xl"
+        textAlign="center"
+        color="black"
+        mb={8}
+        whiteSpace="nowrap"
+        overflow="hidden"
+        textOverflow="ellipsis"
+      > I want to create a sequence that:
       </Heading>
 
       <VStack spacing={4}>  
@@ -19,7 +28,6 @@ function SequenceParameters({getSequence, isLoading, handleChange, sequenceParam
               <option value='5'>5 mins</option>
             </Select>
         </HStack>
-
         <HStack width="full" justify="space-between">
             <Heading as="h2" size="l" textAlign="center" color="black"> 
               Focus Area
@@ -28,19 +36,19 @@ function SequenceParameters({getSequence, isLoading, handleChange, sequenceParam
               <option value='core'>Core</option>
               <option value='hamstring'>Hamstrings</option>
               <option value='legs'>Legs</option>
-              <option value='stretch'>Stretch</option>
+              <option value='shoulder'>Shoulders</option>
             </Select>
         </HStack>
 
         <Button 
-          colorScheme="teal" 
+          bg="button1" 
           variant="solid" 
           isDisabled={isLoading || !sequenceParams.duration || !sequenceParams.focusArea} 
           onClick={() => getSequence(sequenceParams)}
         >
           {isLoading ? "Loading..." : "Build Sequence"}
         </Button>
-        <Text> {isLoading ? "Please be patient as it takes awhile to build your sequence." :null} </Text>
+        <Text> {isLoading ? "Please be patient as it takes awhile to build your sequence..." :null} </Text>
         {isLoading ? (<Spinner />) : null}
       </VStack>
     </Container>

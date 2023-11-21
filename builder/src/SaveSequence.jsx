@@ -1,6 +1,6 @@
 import * as React from 'react';
 import {useState} from 'react'; 
-import { useToast, Heading, Container, Button, Text, Spinner } from '@chakra-ui/react';
+import { useTheme, useToast, Heading, Container, Button, Text, Spinner } from '@chakra-ui/react';
 const BASE_URL ="https://api.airtable.com/v0/appoBT9Iv5LWjgpzz/tbloSz8LJMOm3C9aq";
 
 function SaveSequence({sequence, sequenceParams}) {
@@ -8,6 +8,7 @@ function SaveSequence({sequence, sequenceParams}) {
   const [isSaving, setisSaving] = useState(false);
   const [isSavedData, setisSavedData] = useState(false);
   const toast = useToast();
+  const theme = useTheme();
 
   async function createRecordInAirtable(data, params) {
     const endpoint = BASE_URL
@@ -64,12 +65,12 @@ function SaveSequence({sequence, sequenceParams}) {
   }
 
   return(
-    <Container align='center'>
-      <Heading as="h1" size="xl" textAlign="center" color="black">
-        Here's your sequence. 
+    <Container align='center' >
+      <Heading as="h1" size="xl" textAlign="center" color="black" mb={4}>
+        Here's your sequence: 
       </Heading>
-       <Text>{sequence}</Text>
-       <Button colorScheme="teal" variant="solid" onClick={handleOnClick} isDisabled={isSavedData}>
+       <Text mb={8}>{sequence}</Text>
+       <Button bg="button1" variant="solid" onClick={handleOnClick} isDisabled={isSavedData}>
        {isSaving ? "Loading..." : isSavedData ? "Sequence Saved" : "Save Sequence"}
       </Button>
       {isSaving ? (<Spinner />) : null}

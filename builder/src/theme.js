@@ -1,33 +1,16 @@
-// theme.js
-export default {
-    colors: {
-      transparent: "transparent",
-      black: "#000",
-      white: "#fff",
-      gray: {
-        50: "#f7fafc",
-        // ...
-        900: "#171923",
-      },
-      // ...
-    },
-  };
+import { extendTheme } from '@chakra-ui/react';
 
-
-
-// example theme
 const theme = extendTheme({
-  colors: {...},
   fonts: {
     body: "system-ui, sans-serif",
-    heading: "Georgia, serif",
+    heading: "'Nunito', sans-serif",
     mono: "Menlo, monospace",
   },
   fontSizes: {
     xs: "0.75rem",
     sm: "0.875rem",
     md: "1rem",
-    lg: "1.125rem",
+    lg: "1.1rem",
     xl: "1.25rem",
     "2xl": "1.5rem",
     "3xl": "1.875rem",
@@ -74,4 +57,10 @@ const theme = extendTheme({
     wider: "0.05em",
     widest: "0.1em",
   },
+  colors: {
+    button1: "#FFE3D3", 
+  }
+
 });
+
+export default theme; 
