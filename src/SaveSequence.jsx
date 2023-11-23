@@ -15,8 +15,7 @@ function SaveSequence({sequence, sequenceParams}) {
     const requestOptions = {
       method: 'POST',
       headers: {
-        /* EDIT FOR PROD */ 
-        'Authorization': `Bearer ${/*import.meta.env.*/VITE_AIRTABLE_API}`,
+        'Authorization': `Bearer ${import.meta.env.VITE_AIRTABLE_API}`,
         'Content-Type': 'application/json'
       },
       body: JSON.stringify({ records: [ { fields: {
