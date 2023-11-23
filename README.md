@@ -4,6 +4,12 @@ Introducing YogiBuild, a website that helps yoga instructor build better sequenc
 
 ### Screenshots:
 
+<img width="1397" alt="image" src="https://github.com/cheryltyn/sequence-builder/assets/55976709/3cce4b72-3b15-42b4-bbee-d99b21778755">
+<img width="1373" alt="image" src="https://github.com/cheryltyn/sequence-builder/assets/55976709/b501adaa-3a33-4e5f-b896-695e8c899bf4">
+<img width="1391" alt="image" src="https://github.com/cheryltyn/sequence-builder/assets/55976709/0d596a4d-41dd-449c-802c-d476e014ceb8">
+<img width="1397" alt="image" src="https://github.com/cheryltyn/sequence-builder/assets/55976709/f4b863ff-7816-41b4-8160-baa0b34183fd">
+
+
 ### Technologies Used:
 
 1. HTML/CSS: Used Chakra UI for the CSS framework 
