@@ -16,7 +16,8 @@ function MySequences() {
     const request = {
       method: 'GET',
       headers: {
-        'Authorization': `Bearer ${import.meta.env.VITE_AIRTABLE_API}`,
+        /* EDIT FOR PROD */ 
+        'Authorization': `Bearer ${/*import.meta.env.*/VITE_AIRTABLE_API}`,
       }
     };
     setisLoading(true)
