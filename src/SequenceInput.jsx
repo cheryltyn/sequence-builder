@@ -22,7 +22,6 @@ function SequenceInput() {
 
   async function getSequence(sequenceParams) {
     setIsLoading(true); 
-    console.log(sequenceParams)
     try {
       /* START FOR ACTUAL PROD 
       const completion = await openai.chat.completions.create({
@@ -40,12 +39,12 @@ function SequenceInput() {
         duration: 5000,
         isClosable: true,
     }); 
+  } finally {
+      setIsLoading(false); 
       /* NO API PORTFOLIO */ 
       setIsData(true); 
       setSequence("Start in a seated position with your legs extended forward. Take a deep breath in and lift your arms overhead. Exhale and engage your core as you fold forward into a seated forward bend, reaching for your toes. Inhale as you come back up to a seated position. Transition into boat pose by leaning back slightly and lifting your legs off the floor, balancing on your sit bones. Hold for a few breaths, then slowly lower back down. Finish with a final seated forward bend, focusing on lengthening your spine and stretching your hamstrings. Take a deep breath in, exhale and release.")
       /* END OF NO API PORTFOLIO */ 
-  } finally {
-      setIsLoading(false); 
     }
   }
 

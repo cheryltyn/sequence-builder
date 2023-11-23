@@ -14,12 +14,12 @@ import { Flex, Spacer, Heading} from '@chakra-ui/react';
          </Link>
          <Spacer /> 
          <Link to="/sequenceinput"> 
-         <Heading as="h5" size="l" textAlign="center" color="black" mr='30px' as="u"> 
+         <Heading as="h5" size="l" textAlign="center" color="black" mr='30px'> 
          Create Sequence 
          </Heading>
          </Link>
          <Link to="/mysequences"> 
-         <Heading as="h5" size="l" textAlign="center" color="black" as="u"> 
+         <Heading as="h5" size="l" textAlign="center" color="black"> 
          My Sequences 
          </Heading>
          </Link> 
