@@ -1,6 +1,6 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import Homepage from './homepage';
+import Homepage from './Homepage';
 import SequenceInput from './SequenceInput';
 import MySequences from './MySequences';
 import SaveSequence from './SaveSequence';
