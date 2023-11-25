@@ -1,6 +1,6 @@
 ### YogiBuild
 
-Introducing YogiBuild, a website that helps yoga instructor build better sequence. As a yoga instructor who sometimes teaches yoga, I’m constantly struggling with coming up with new sequences every week. As such, I wanted to use a LLM to help me create yoga sequences. 
+Introducing YogiBuild, a website that helps yoga instructor build better sequence. As a yoga instructor who sometimes teaches yoga, I’m constantly struggling with coming up with new sequences every week. As such, I wanted to use a LLM to help me create yoga sequences. Link: https://sequence-builder.vercel.app/ 
 
 ### Screenshots:
 
