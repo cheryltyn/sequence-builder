@@ -6,7 +6,7 @@ import SaveSequence from './SaveSequence';
 import SequenceParameters from './SequenceParameters';
 
 function SequenceInput() {
-  /* START FOR ACTUAL PROD */ 
+  /* START FOR ACTUAL PROD  
   const openai = new OpenAI({
     apiKey: import.meta.env.VITE_OPENAI_API_KEY,
     dangerouslyAllowBrowser: true
